@@ -10,7 +10,7 @@ namespace spider
 {
     public class Anaysis
     {
-        public void GetHerf(Hashtable hashTable,string url)
+        public void GetHerf(Hashtable hashTable, string url)
         {
             HtmlWeb htmlweb = new HtmlWeb();
             HtmlAgilityPack.HtmlDocument document = htmlweb.Load(url);
@@ -25,7 +25,10 @@ namespace spider
                               };
             foreach (var item in linksOnPage)
             {
-                hashTable.Add(item.Text, item.Url);
+                if (hashTable.ContainsKey(item.Text) == false)
+                {
+                    hashTable.Add(item.Text, item.Url);
+                }
                 Console.WriteLine(item);
             }
         }

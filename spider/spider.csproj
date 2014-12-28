@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anaysis.cs" />
+    <Compile Include="BFSSearch.cs" />
     <Compile Include="DownLoadHtml.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
