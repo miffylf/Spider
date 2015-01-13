@@ -5,15 +5,16 @@ using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using System.Windows.Forms;
 
 namespace spider
 {
     public class Anaysis
     {
-        public void GetHerf(Hashtable hashTable, string url)
+        public void GetHerf(ListBox listbox,Hashtable hashTable, string url)
         {
             HtmlWeb htmlweb = new HtmlWeb();
-            HtmlAgilityPack.HtmlDocument document = htmlweb.Load(url);
+            HtmlAgilityPack.HtmlDocument document = htmlweb.Load("http://wlan.jsyd139.com/");
             var linksOnPage = from lnks in document.DocumentNode.Descendants()
                               where lnks.Name == "a" &&
                               lnks.Attributes["href"] != null &&
@@ -31,6 +32,7 @@ namespace spider
                 }
                 Console.WriteLine(item);
             }
+            listbox.DataSource = hashTable;
         }
     }
 }

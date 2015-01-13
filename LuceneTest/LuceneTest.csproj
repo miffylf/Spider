@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>G:\download\HtmlAgilityPack.1.4.6\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Lucene.Net">
       <HintPath>G:\download\LuceneNetDemo\LuceneNetDemo\PZYM.Shop\Web\bin\Lucene.Net.dll</HintPath>
     </Reference>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace spider
 {
@@ -15,6 +16,9 @@ namespace spider
         public Form1()
         {
             InitializeComponent();
+            Hashtable tb = new Hashtable();
+            Anaysis asd = new Anaysis();
+            asd.GetHerf(listBox1,tb, "www.baidu.com");
         }
     }
 }

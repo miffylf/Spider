@@ -11,12 +11,36 @@ using Lucene.Net.Store;
 using Lucene.Net.Search;
 using Lucene.Net.Messages;
 using Lucene.Net.QueryParsers;
+using HtmlAgilityPack;
+using System.Collections;
+
 namespace LuceneTest
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Hashtable hashtable = new Hashtable();
+            HtmlWeb htmlweb = new HtmlWeb();
+            HtmlAgilityPack.HtmlDocument document = htmlweb.Load("http://www.2345.com/");
+            var linksOnPage = from lnks in document.DocumentNode.Descendants()
+                              where lnks.Name == "a" &&
+                              lnks.Attributes["href"] != null &&
+                              lnks.InnerText.Trim().Length > 0
+                              select new
+                              {
+                                  Url = lnks.Attributes["href"].Value,
+                                  Text = lnks.InnerText
+                              };
+            foreach (var item in linksOnPage)
+            {
+                if (hashtable.ContainsKey(item.Text) == false)
+                {
+                    hashtable.Add(item.Text, item.Url);
+                }
+                Console.WriteLine(item);
+            }
+            Console.ReadKey();
             #region 创建索引
             Analyzer anaylyzer = new StandardAnalyzer();
             IndexWriter writer = new IndexWriter("IndexDirectory", anaylyzer, true);
@@ -42,6 +66,6 @@ namespace LuceneTest
             #endregion
         }
 
-       
+
     }
 }
